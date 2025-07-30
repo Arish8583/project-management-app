@@ -3,12 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { addProject, fetchProjects, selectProjects } from "../features/projects/ProjectSlice";
 import { selectUser } from "../features/auth/auth";
 import { Link } from "react-router-dom";
+import React from "react";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const projects = useSelector(selectProjects); 
-  const currentUser = useSelector(selectUser);
+  // const currentUser = useSelector(selectUser);
+  // console.log("Logged in user:", user);
+
 
   const [title, setTitle] = useState("");
 
@@ -25,7 +28,7 @@ const Dashboard = () => {
 
   return (
     <div style={{ padding: "2rem" }}>
-      <h2>👋 Welcome, {user?.email}</h2>
+      <h2>👋 Welcome, {user?.name}</h2>
 
       <form onSubmit={handleAddProject} style={{ marginTop: "2rem" }}>
         <input
@@ -47,10 +50,10 @@ const Dashboard = () => {
         {projects
           .filter((p) => p.createdBy === user?.id)
           .map((project) => (
-            <>
+            <React.Fragment key={project.id}>
               {/* <li key={project.id}>📁 {project.title}</li> */}
               <li key={project.id}><Link to={`/projects/${project.id}`}>📁 {project.title}</Link></li>
-            </>
+            </React.Fragment>
 
           ))}
       </ul>

@@ -2,11 +2,15 @@
   "users": [
     {
       "id": "2f51cac0-cc36-4d56-bd72-144d7f454345",
+      "name": "Arish Narayanan",
+      "phone": "9876543210",
       "email": "arishnarayanan121@gmail.com",
       "password": "Arish@123"
     },
     {
       "id": "e0585d4a-552b-44cf-82f1-a6aa471dce19",
+      "name": "Arish N",
+      "phone": "9123456789",
       "email": "arishnarayanan466@gmail.com",
       "password": "Arish@123"
     }
@@ -31,7 +35,35 @@
       "description": "redux",
       "assigneeId": "2f51cac0-cc36-4d56-bd72-144d7f454345",
       "id": "0def8ae9-de14-4256-89a5-8a4f3c5fc2bf"
+    },
+    {
+      "id": "c17f87bc-1a56-4450-b0da-ba97431fec6a",
+      "title": "as",
+      "description": "sws",
+      "assigneeId": "2f51cac0-cc36-4d56-bd72-144d7f454345",
+      "status": "todo",
+      "projectId": "9fba1752-8208-46ef-a6b0-2b88085a9c08",
+      "createdBy": "2f51cac0-cc36-4d56-bd72-144d7f454345",
+      "createdAt": "2025-07-30T19:46:36.270Z"
     }
   ],
-  "comments": []
+  "comments": [
+    {
+      "id": "a8172c61-4e83-4a3d-86a0-b06a53a4cbcf",
+      "taskId": "c17f87bc-1a56-4450-b0da-ba97431fec6a",
+      "user": "arishnarayanan121@gmail.com",
+      "text": "[deleted]",
+      "createdAt": "2025-07-30T19:53:23.972Z",
+      "edited": true,
+      "deleted": true
+    },
+    {
+      "id": "000f4956-0e80-478d-ba30-61e88a3d3e5c",
+      "taskId": "c17f87bc-1a56-4450-b0da-ba97431fec6a",
+      "user": "arishnarayanan121@gmail.com",
+      "text": "[deleted]",
+      "createdAt": "2025-07-30T20:01:01.940Z",
+      "deleted": true
+    }
+  ]
 }

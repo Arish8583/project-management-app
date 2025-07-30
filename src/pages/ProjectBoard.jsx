@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
+import CommentSection from "../features/comments/Comment";
 
 import {
   fetchTasks,
@@ -269,6 +270,7 @@ const TaskBoard = () => {
                                 </button>
                               </>
                             )}
+                        <CommentSection taskId={task.id} />
                           </div>
                         )}
                       </Draggable>
