@@ -1,0 +1,30 @@
+{
+  "users": [
+    {
+      "id": "2f51cac0-cc36-4d56-bd72-144d7f454345",
+      "email": "arishnarayanan121@gmail.com",
+      "password": "Arish@123"
+    }
+  ],
+  "projects": [
+    {
+      "id": "9fba1752-8208-46ef-a6b0-2b88085a9c08",
+      "title": "Tcs",
+      "createdBy": "2f51cac0-cc36-4d56-bd72-144d7f454345",
+      "createdAt": "2025-07-30T17:00:03.978Z"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "afa20270-ca88-45bc-ad8f-904fe5459b55",
+      "title": "create react project",
+      "description": "using redux",
+      "assigneeId": "2f51cac0-cc36-4d56-bd72-144d7f454345",
+      "status": "todo",
+      "projectId": "9fba1752-8208-46ef-a6b0-2b88085a9c08",
+      "createdBy": "2f51cac0-cc36-4d56-bd72-144d7f454345",
+      "createdAt": "2025-07-30T17:01:14.761Z"
+    }
+  ],
+  "comments": []
+}

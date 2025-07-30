@@ -1,24 +1,35 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import Login from './pages/login';
+import Register from './pages/Register';
+import Dashboard from './pages/Dashboard';
+import { selectUser } from './features/auth/auth';
+import TaskBoard from './pages/ProjectBoard';
 
 function App() {
+  const user = useSelector(selectUser)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route
+          path="/login"
+          element={!user ? <Login /> : <Navigate to="/dashboard" />}
+        />
+        <Route
+          path="/register"
+          element={!user ? <Register /> : <Navigate to="/dashboard" />}
+        />
+        <Route
+          path="/dashboard"
+          element={user ? <Dashboard /> : <Navigate to="/login" />}
+        />
+        <Route path="*" element={<Navigate to="/login" />} />
+        <Route path="/projects/:projectId" element={<TaskBoard />} />
+
+      </Routes>
+    </Router>
   );
 }
 
