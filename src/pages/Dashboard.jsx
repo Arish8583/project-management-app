@@ -8,6 +8,7 @@ const Dashboard = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const projects = useSelector(selectProjects); 
+  const currentUser = useSelector(selectUser);
 
   const [title, setTitle] = useState("");
 

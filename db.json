@@ -4,6 +4,11 @@
       "id": "2f51cac0-cc36-4d56-bd72-144d7f454345",
       "email": "arishnarayanan121@gmail.com",
       "password": "Arish@123"
+    },
+    {
+      "id": "e0585d4a-552b-44cf-82f1-a6aa471dce19",
+      "email": "arishnarayanan466@gmail.com",
+      "password": "Arish@123"
     }
   ],
   "projects": [
@@ -16,14 +21,16 @@
   ],
   "tasks": [
     {
-      "id": "afa20270-ca88-45bc-ad8f-904fe5459b55",
       "title": "create react project",
-      "description": "using redux",
+      "description": "using redux toolkit",
+      "assigneeId": "e0585d4a-552b-44cf-82f1-a6aa471dce19",
+      "id": "afa20270-ca88-45bc-ad8f-904fe5459b55"
+    },
+    {
+      "title": "tas",
+      "description": "redux",
       "assigneeId": "2f51cac0-cc36-4d56-bd72-144d7f454345",
-      "status": "todo",
-      "projectId": "9fba1752-8208-46ef-a6b0-2b88085a9c08",
-      "createdBy": "2f51cac0-cc36-4d56-bd72-144d7f454345",
-      "createdAt": "2025-07-30T17:01:14.761Z"
+      "id": "0def8ae9-de14-4256-89a5-8a4f3c5fc2bf"
     }
   ],
   "comments": []

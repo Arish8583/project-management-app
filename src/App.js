@@ -27,6 +27,8 @@ function App() {
         />
         <Route path="*" element={<Navigate to="/login" />} />
         <Route path="/projects/:projectId" element={<TaskBoard />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+
 
       </Routes>
     </Router>
