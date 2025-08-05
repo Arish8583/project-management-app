@@ -8,6 +8,7 @@ import Login from './pages/login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import TaskBoard from './pages/ProjectBoard';
+import TaskDetail from './features/tasks/TaskDetail';
 
 function App() {
   const user = useSelector(selectUser);
@@ -33,6 +34,7 @@ function App() {
             path="/projects/:projectId"
             element={user ? <TaskBoard /> : <Navigate to="/login" />}
           />
+          <Route path="/tasks/:taskId" element={<TaskDetail />} />
           {/* Redirect any unknown route */}
           <Route path="*" element={<Navigate to={user ? "/dashboard" : "/login"} />} />
         </Route>

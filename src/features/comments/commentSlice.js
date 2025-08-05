@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, createSelector } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -21,7 +21,6 @@ export const addComment = createAsyncThunk("comments/add", async ({ taskId, user
   return res.data;
 });
 
-
 export const updateComment = createAsyncThunk("comments/update", async ({ id, text }) => {
   const res = await axios.patch(`${COMMENT_URL}/${id}`, {
     text,
@@ -31,15 +30,15 @@ export const updateComment = createAsyncThunk("comments/update", async ({ id, te
 });
 
 export const deleteComment = createAsyncThunk("comments/delete", async (comment) => {
-  const res = await axios.patch(`${COMMENT_URL}/${comment.id}`, {
+  if (!comment?.id) throw new Error("Invalid comment object");
+  const updatedComment = {
     ...comment,
     text: "[deleted]",
     deleted: true,
-  });
+  };
+  const res = await axios.patch(`${COMMENT_URL}/${comment.id}`, updatedComment);
   return res.data;
 });
-
-
 
 const commentSlice = createSlice({
   name: 'comments',
@@ -59,18 +58,26 @@ const commentSlice = createSlice({
         state.comments.push(action.payload);
       })
       .addCase(updateComment.fulfilled, (state, action) => {
-  const idx = state.comments.findIndex(c => c.id === action.payload.id);
-  if (idx !== -1) state.comments[idx] = action.payload;
-})
-.addCase(deleteComment.fulfilled, (state, action) => {
-  const idx = state.comments.findIndex(c => c.id === action.payload.id);
-  if (idx !== -1) state.comments[idx] = action.payload;
-})
-
+        const idx = state.comments.findIndex(c => c.id === action.payload.id);
+        if (idx !== -1) {
+          state.comments[idx] = { ...state.comments[idx], ...action.payload };
+        }
+      })
+      .addCase(deleteComment.fulfilled, (state, action) => {
+        const idx = state.comments.findIndex(c => c.id === action.payload.id);
+        if (idx !== -1) {
+          state.comments[idx] = { ...state.comments[idx], ...action.payload };
+        }
+      });
   },
 });
 
-export const selectCommentsByTask = (taskId) => (state) =>
-  state.comments.comments.filter((c) => c.taskId === taskId);
+// Memoized selector
+export const selectAllComments = (state) => state.comments.comments;
+
+export const selectCommentsByTask = (taskId) =>
+  createSelector([selectAllComments], (comments) =>
+    comments.filter((c) => c.taskId === taskId)
+  );
 
 export default commentSlice.reducer;

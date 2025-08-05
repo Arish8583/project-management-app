@@ -12,16 +12,21 @@ import { selectUser } from "../auth/auth";
 const CommentSection = ({ taskId }) => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
-//   const comments = useSelector(selectCommentsByTask(taskId));
-const rawComments = useSelector(selectCommentsByTask(taskId));
-const comments = rawComments.slice().sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
+  // Memoized selector
+  const rawCommentsSelector = selectCommentsByTask(taskId);
+  const rawComments = useSelector(rawCommentsSelector);
+  const comments = rawComments
+    .slice()
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
   const [text, setText] = useState("");
+
+  const [editModalOpen, setEditModalOpen] = useState(false);
   const [editId, setEditId] = useState(null);
   const [editText, setEditText] = useState("");
 
-  const [showModal, setShowModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [commentToDelete, setCommentToDelete] = useState(null);
 
   useEffect(() => {
@@ -35,28 +40,47 @@ const comments = rawComments.slice().sort((a, b) => new Date(b.createdAt) - new 
     }
   };
 
-  const handleEdit = (comment) => {
+  const openEditModal = (comment) => {
     setEditId(comment.id);
     setEditText(comment.text);
+    setEditModalOpen(true);
   };
 
   const handleUpdate = () => {
     if (editText.trim()) {
       dispatch(updateComment({ id: editId, text: editText }));
+      setEditModalOpen(false);
       setEditId(null);
       setEditText("");
     }
   };
 
   const confirmDelete = () => {
-    dispatch(deleteComment(commentToDelete));
-    setCommentToDelete(null);
-    setShowModal(false);
+    if (commentToDelete?.id) {
+      dispatch(deleteComment(commentToDelete));
+      setCommentToDelete(null);
+      setShowDeleteModal(false);
+    }
   };
 
   return (
     <div style={{ paddingTop: "1rem", borderTop: "1px solid #ccc" }}>
       <strong>Comments:</strong>
+
+      {/* New Comment Input - Top */}
+      <div style={{ margin: "1rem 0" }}>
+        <input
+          type="text"
+          value={text}
+          placeholder="Write a comment..."
+          onChange={(e) => setText(e.target.value)}
+          style={{ width: "60%", padding: "5px" }}
+        />
+        <button onClick={handleAdd} style={{ marginLeft: "8px" }}>
+          Post
+        </button>
+      </div>
+
       <ul>
         {comments.map((c) => (
           <li key={c.id}>
@@ -64,15 +88,6 @@ const comments = rawComments.slice().sort((a, b) => new Date(b.createdAt) - new 
               <strong>{c.user}:</strong>{" "}
               {c.deleted ? (
                 <em style={{ color: "gray" }}>[deleted]</em>
-              ) : editId === c.id ? (
-                <>
-                  <input
-                    value={editText}
-                    onChange={(e) => setEditText(e.target.value)}
-                  />
-                  <button onClick={handleUpdate}>Save</button>
-                  <button onClick={() => setEditId(null)}>Cancel</button>
-                </>
               ) : (
                 <>
                   {c.text}
@@ -85,12 +100,13 @@ const comments = rawComments.slice().sort((a, b) => new Date(b.createdAt) - new 
                   <div style={{ marginTop: 5 }}>
                     {user?.email === c.user && !c.deleted && (
                       <>
-                        <button onClick={() => handleEdit(c)}>Edit</button>{" "}
+                        <button onClick={() => openEditModal(c)}>Edit</button>
                         <button
                           onClick={() => {
                             setCommentToDelete(c);
-                            setShowModal(true);
+                            setShowDeleteModal(true);
                           }}
+                          style={{ marginLeft: "6px" }}
                         >
                           Delete
                         </button>
@@ -104,16 +120,8 @@ const comments = rawComments.slice().sort((a, b) => new Date(b.createdAt) - new 
         ))}
       </ul>
 
-      <input
-        type="text"
-        value={text}
-        placeholder="Write a comment..."
-        onChange={(e) => setText(e.target.value)}
-      />
-      <button onClick={handleAdd}>Post</button>
-
-      {/* Confirmation Modal */}
-      {showModal && (
+      {/* Delete Confirmation Modal */}
+      {showDeleteModal && (
         <div style={modalStyles.overlay}>
           <div style={modalStyles.modal}>
             <p>Are you sure you want to delete this comment?</p>
@@ -121,8 +129,35 @@ const comments = rawComments.slice().sort((a, b) => new Date(b.createdAt) - new 
               <button onClick={confirmDelete}>Yes</button>{" "}
               <button
                 onClick={() => {
-                  setShowModal(false);
+                  setShowDeleteModal(false);
                   setCommentToDelete(null);
+                }}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Edit Modal */}
+      {editModalOpen && (
+        <div style={modalStyles.overlay}>
+          <div style={modalStyles.modal}>
+            <h3>Edit Comment</h3>
+            <textarea
+              value={editText}
+              onChange={(e) => setEditText(e.target.value)}
+              rows={4}
+              style={{ width: "100%", padding: "5px" }}
+            />
+            <div style={{ marginTop: "1rem" }}>
+              <button onClick={handleUpdate}>Update</button>{" "}
+              <button
+                onClick={() => {
+                  setEditModalOpen(false);
+                  setEditId(null);
+                  setEditText("");
                 }}
               >
                 Cancel
@@ -146,6 +181,7 @@ const modalStyles = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    zIndex: 9999,
   },
   modal: {
     background: "#fff",
