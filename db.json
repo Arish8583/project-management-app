@@ -37,14 +37,14 @@
       "id": "0def8ae9-de14-4256-89a5-8a4f3c5fc2bf"
     },
     {
-      "id": "10cc7669-4d3b-4887-a3f6-4567fac97c7e",
-      "title": "efs",
-      "description": "vdfvf",
+      "id": "267a5c16-5790-468c-aaa7-4f7a9eeecb2c",
+      "title": "SXSAD",
+      "description": "DCDVh",
       "assigneeId": "2f51cac0-cc36-4d56-bd72-144d7f454345",
       "status": "todo",
       "projectId": "9fba1752-8208-46ef-a6b0-2b88085a9c08",
       "createdBy": "2f51cac0-cc36-4d56-bd72-144d7f454345",
-      "createdAt": "2025-08-05T11:47:32.154Z"
+      "createdAt": "2025-08-05T13:03:54.944Z"
     }
   ],
   "comments": [
@@ -101,11 +101,59 @@
     },
     {
       "id": "ea625271-8887-419a-9a4d-0a9adc28ca06",
-      "taskId": "10cc7669-4d3b-4887-a3f6-4567fac97c7e",
+      "taskId": null,
       "user": "arishnarayanan121@gmail.com",
       "text": "xs",
       "createdAt": "2025-08-05T11:51:06.008Z",
       "edited": true
+    },
+    {
+      "id": "0f31afe1-38ee-4744-a5ae-b1aa0c20bcbe",
+      "taskId": null,
+      "user": "arishnarayanan121@gmail.com",
+      "text": "[deleted]",
+      "createdAt": "2025-08-05T12:15:15.088Z",
+      "deleted": true
+    },
+    {
+      "id": "a3462b02-0ec1-4a62-a6b5-697796e96661",
+      "taskId": null,
+      "user": "arishnarayanan121@gmail.com",
+      "text": "[deleted]",
+      "createdAt": "2025-08-05T12:23:26.688Z",
+      "deleted": true
+    },
+    {
+      "id": "c2573b8a-3103-4826-8046-fa4d51f67568",
+      "taskId": null,
+      "user": "arishnarayanan121@gmail.com",
+      "text": "[deleted]",
+      "createdAt": "2025-08-05T12:28:46.952Z",
+      "edited": true,
+      "deleted": true
+    },
+    {
+      "id": "163dcbca-d62b-4b9e-8b59-b6bb85734ffc",
+      "taskId": null,
+      "user": "arishnarayanan121@gmail.com",
+      "text": "[deleted]",
+      "createdAt": "2025-08-05T12:38:47.809Z",
+      "edited": true,
+      "deleted": true
+    },
+    {
+      "id": "a86ab95b-80da-46a8-b8d0-a44b612a4e2f",
+      "taskId": null,
+      "user": "arishnarayanan121@gmail.com",
+      "text": "ssd",
+      "createdAt": "2025-08-05T12:56:22.504Z"
+    },
+    {
+      "id": "49597338-a15b-4f71-9827-4e0eefa38fb6",
+      "taskId": "267a5c16-5790-468c-aaa7-4f7a9eeecb2c",
+      "user": "arishnarayanan121@gmail.com",
+      "text": "  V",
+      "createdAt": "2025-08-05T13:03:59.695Z"
     }
   ]
 }
