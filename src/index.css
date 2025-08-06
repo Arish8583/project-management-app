@@ -86,3 +86,20 @@
 .cancel-btn:hover {
   background-color: #b0b0b0;
 }
+
+
+.taskboard-container {
+  padding: 1rem;
+}
+
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-columns-container {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}

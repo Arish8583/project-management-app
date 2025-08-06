@@ -38,7 +38,7 @@
     },
     {
       "id": "267a5c16-5790-468c-aaa7-4f7a9eeecb2c",
-      "title": "SXSAD",
+      "title": "SXSAd",
       "description": "DCDVh",
       "assigneeId": "2f51cac0-cc36-4d56-bd72-144d7f454345",
       "status": "todo",
@@ -152,8 +152,17 @@
       "id": "49597338-a15b-4f71-9827-4e0eefa38fb6",
       "taskId": "267a5c16-5790-468c-aaa7-4f7a9eeecb2c",
       "user": "arishnarayanan121@gmail.com",
-      "text": "  V",
-      "createdAt": "2025-08-05T13:03:59.695Z"
+      "text": "[deleted]",
+      "createdAt": "2025-08-05T13:03:59.695Z",
+      "deleted": true
+    },
+    {
+      "id": "14ebcb6e-abfe-44ca-be64-3edb05acb87c",
+      "taskId": "267a5c16-5790-468c-aaa7-4f7a9eeecb2c",
+      "user": "arishnarayanan121@gmail.com",
+      "text": "sxcxscc",
+      "createdAt": "2025-08-06T08:31:17.363Z",
+      "edited": true
     }
   ]
 }
