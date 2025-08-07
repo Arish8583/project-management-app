@@ -35,7 +35,7 @@ const useTaskBoard = () => {
     const taskData = {
       ...newTask,
       id: uuidv4(),
-      projectId,
+       projectId,// ✅ links task to a project
       createdBy: currentUser?.id,
       createdAt: new Date().toISOString(),
     };
